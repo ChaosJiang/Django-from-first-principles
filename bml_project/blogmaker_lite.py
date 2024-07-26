@@ -1,28 +1,29 @@
+from pathlib import Path
 from django.conf import settings
 from django.http import HttpResponse
 from django.urls import path
 from django.core.handlers.wsgi import WSGIHandler
-from django.core.management import \
-    execute_from_command_line
+from django.core.management import execute_from_command_line
+from django.shortcuts import render
 
 settings.configure(
     ROOT_URLCONF=__name__,
     DEBUG=True,
     SECRET_KEY="my-secret-key",
+    TEMPLATES=[
+        {
+            "BACKEND": "django.template.backends.django.DjangoTemplates",
+            "DIRS": [Path(__file__).parent / "templates"],
+        }
+    ],
 )
 
+
 def index(request):
-    title = "BlogMaker Lite"
-    description = "Start a blog!"
+    return render(request, "index.html")
 
-    page_text = f"<h1>{title}</h1>"
-    page_text += f"<p>{description}</p>"
 
-    return HttpResponse(page_text)
-
-urlpatterns = [
-    path("", index)
-]
+urlpatterns = [path("", index)]
 
 application = WSGIHandler()
 
