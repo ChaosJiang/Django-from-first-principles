@@ -1,22 +1,13 @@
-import os
-
-import django
-from django.urls import path
 from django.core.handlers.wsgi import WSGIHandler
-from django.core.management import execute_from_command_line
+from django.http import HttpResponse
 from django.shortcuts import render
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-django.setup()
+from django.urls import path
 
 
-def index(request):
+def index(request) -> HttpResponse:
     return render(request, "index.html")
 
 
 urlpatterns = [path("", index)]
 
 application = WSGIHandler()
-
-if __name__ == "__main__":
-    execute_from_command_line()
