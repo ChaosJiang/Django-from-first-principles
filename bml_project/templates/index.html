@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-    <p>BlogMaker Lite lets you share your thoughts with the world.</p>
-    <p>Make a blog today, and let us know what you're thinking!</p>
-
-    <a href="{% url 'blogs' %}">See all blogs</a>
+    <div class="hero">
+        <p><span class="title">BlogMaker Lite</span> lets you...</p>
+        <p>Make a blog today...</p>
+    </div>
+    <a class="button primary" href="{% url 'blogs' %}">See all blogs</a>
 {% endblock content %}
