@@ -1,11 +1,11 @@
-from blogs.models import Blog
+from blogs.models import Blog, BlogPost
 from django.contrib import admin
 from django.core.handlers.wsgi import WSGIHandler
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import path
 
-admin.site.register(Blog)
+admin.site.register((Blog, BlogPost))
 
 
 def index(request) -> HttpResponse:
