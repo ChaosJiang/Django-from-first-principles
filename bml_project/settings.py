@@ -48,3 +48,4 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     "css",
 ]
+STATIC_ROOT = "staticfiles/"

@@ -4,8 +4,10 @@
     <h2>Blogs</h2>
 
     {% for blog in blogs %}
-        <h3>{{ blog.title }}</h3>
-        <p>{{ blog.description }}</p>
+        <div class="card">
+            <head><h3>{{ blog.title }} </h3></head>
+            <p>{{ blog.description }}</p>
+        </div>
     {% empty %}
         <h3>No blogs have been added yet.</h3>
     {% endfor %}
