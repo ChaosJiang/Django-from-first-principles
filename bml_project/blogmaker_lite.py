@@ -12,6 +12,16 @@ def index(request) -> HttpResponse:
     return render(request, "index.html")
 
 
-urlpatterns = [path("admin/", admin.site.urls), path("", index)]
+def blogs(request) -> HttpResponse:
+    all_blogs = Blog.objects.all()
+    context = {"blogs": all_blogs}
+    return render(request, "blogs.html", context)
+
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("blogs/", blogs, name="blogs"),
+    path("", index, name="index"),
+]
 
 application = WSGIHandler()
