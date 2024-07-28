@@ -5,7 +5,7 @@
 
     {% for blog in blogs %}
         <div class="card">
-            <head><h3>{{ blog.title }} </h3></head>
+            <head><h3><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h3></head>
             <p>{{ blog.description }}</p>
         </div>
     {% empty %}

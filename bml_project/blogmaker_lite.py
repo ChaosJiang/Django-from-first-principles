@@ -18,9 +18,26 @@ def blogs(request) -> HttpResponse:
     return render(request, "blogs.html", context)
 
 
+def blog(request, blog_id) -> HttpResponse:
+    blog = Blog.objects.get(id=blog_id)
+    posts = blog.blogpost_set.all()
+    context = {"blog": blog, "posts": posts}
+    return render(request, "blog.html", context)
+
+
+def post(request, post_id) -> HttpResponse:
+    post = BlogPost.objects.get(id=post_id)
+    blog = post.blog
+    context = {"post": post, "blog": blog}
+
+    return render(request, "post.html", context)
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("blogs/", blogs, name="blogs"),
+    path("blogs/<int:blog_id>/", blog, name="blog"),
+    path("posts/<int:post_id>/", post, name="post"),
     path("", index, name="index"),
 ]
 
