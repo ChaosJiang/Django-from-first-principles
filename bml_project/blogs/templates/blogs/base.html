@@ -16,6 +16,18 @@
         <a class="active" href="{% url 'blogs:index' %}">BlogMaker Lite</a>
         <a href="{% url 'blogs:blogs' %}">All blogs</a>
       </div>
+
+      <div  class="nav-right">
+        {% if user.is_authenticated %}
+          <span class="is-vertical-align">Hello, {{ user.username }}. </span>
+          <form action="{% url 'accounts:logout' %}" method="post" class="is-vertical-align">
+            {% csrf_token %}
+            <button class="button outline">Log out</button>
+          </form>
+        {% else %}
+          <a href="{% url 'accounts:login' %}">Login in</a>
+        {% endif %}
+      </div>
     </nav>
     <div class="container">
       {% block content %}{% endblock content %}

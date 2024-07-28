@@ -22,6 +22,7 @@ TEMPLATES = [
 
 INSTALLED_APPS = [
     "blogs",
+    "accounts",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
@@ -49,3 +51,5 @@ STATICFILES_DIRS = [
     "css",
 ]
 STATIC_ROOT = "staticfiles/"
+LOGIN_REDIRECT_URL = "blogs:index"
+LOGOUT_REDIRECT_URL = "blogs:index"
